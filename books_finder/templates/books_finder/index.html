@@ -1,0 +1,11 @@
+{% extends "books_finder/base.html" %}
+{% block title %}Search for a book{% endblock %}
+{% block content %}
+    <h1>Bienvenue sur Biblits</h1>
+    <h2>Voici les thèmes</h2>
+    <ul>
+        {% for theme in themes %}
+            <li><a href="{% url 'theme_detail' theme.slug %}">{{ theme.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
