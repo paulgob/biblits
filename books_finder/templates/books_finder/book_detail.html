@@ -6,7 +6,7 @@
     <ul>
         <li>Titre: {{ book.title }}</li>
         <li>Auteur: {{ book.author }}</li>
-        <li>Thème: {{ book.theme }}</li>
+        <li>Thèmes: {{ book.theme.all|join:", " }}</li>
         <li>Tags: {{ book.tags.all|join:", " }}</li>
     </ul>
 {% endblock %}

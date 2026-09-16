@@ -5,7 +5,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     publication_date = models.DateField()
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
-    theme = models.ForeignKey('Theme', on_delete=models.CASCADE)
+    theme = models.ManyToManyField('Theme')
     tags = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
