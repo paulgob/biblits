@@ -12,3 +12,10 @@ def theme_detail(request, slug):
     theme = get_object_or_404(Theme, slug=slug)  # Find the theme by its slug
     books = Book.objects.filter(theme=theme) # Get all books associated with this theme
     return render(request, "books_finder/theme_detail.html", {"theme": theme, "books": books}) 
+
+def book_detail(request, pk):
+    '''
+    Display the details of a specific book.
+    '''
+    book = get_object_or_404(Book, pk=pk)  # Find the book by its primary key
+    return render(request, "books_finder/book_detail.html", {"book": book})

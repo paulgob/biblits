@@ -6,6 +6,7 @@ class Book(models.Model):
     publication_date = models.DateField()
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     theme = models.ForeignKey('Theme', on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
         return self.title
@@ -29,3 +30,9 @@ class Theme(models.Model):
             self.slug = slugify(self.name)
 
         super().save(*args, **kwargs)
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

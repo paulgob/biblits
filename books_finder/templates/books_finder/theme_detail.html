@@ -5,7 +5,7 @@
     <h2>Voici les livres liés au thème</h2>
     <ul>
         {% for book in books %}
-            <li>{{ book.title }}</li>
+            <li><a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

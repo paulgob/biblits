@@ -1,0 +1,12 @@
+{% extends "books_finder/base.html" %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <h2>Voici les informations concernant le livre</h2>
+    <ul>
+        <li>Titre: {{ book.title }}</li>
+        <li>Auteur: {{ book.author }}</li>
+        <li>Thème: {{ book.theme }}</li>
+        <li>Tags: {{ book.tags.all|join:", " }}</li>
+    </ul>
+{% endblock %}
