@@ -2,7 +2,56 @@
 {% block title %}Search for a book{% endblock %}
 {% block content %}
     <h1>Bienvenue sur Biblits</h1>
-    <h2>Voici les thèmes</h2>
+
+    <h2>Rechercher un livre</h2>
+    <form
+        method="GET"
+        action="{% url 'book_search' %}"
+    >
+
+        <input
+            type="search"
+            name="q"
+            value="{{ search_term }}"
+            placeholder="Rechercher un livre..."
+        >
+
+        <button type="submit">
+            Rechercher
+        </button>
+
+    </form>
+    {% if search_term %}
+
+        <h2>
+            Résultats pour "{{ search_term }}"
+        </h2>
+
+        {% for book in books %}
+
+            <article>
+
+                <h3>
+                    {{ book.title }}
+                </h3>
+
+                <p>
+                    {{ book.description }}
+                </p>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                Aucun livre trouvé.
+            </p>
+
+        {% endfor %}
+
+    {% endif %}
+    
+    <h2>Explorer les thèmes</h2>
     <ul>
         {% for theme in themes %}
             <li><a href="{% url 'theme_detail' theme.slug %}">{{ theme.name }}</a></li>

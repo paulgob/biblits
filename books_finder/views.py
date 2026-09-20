@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from .services import search_books
 from .models import Theme, Book
 
 def index(request) : 
-    themes = Theme.objects.all()     # Récupère tous les thèmes dans la base de donnée
+    themes = Theme.objects.all()
     return render(request, "books_finder/index.html", {"themes": themes})
 
 def theme_detail(request, slug):
@@ -19,3 +20,22 @@ def book_detail(request, pk):
     '''
     book = get_object_or_404(Book, pk=pk)  # Find the book by its primary key
     return render(request, "books_finder/book_detail.html", {"book": book})
+
+def book_search_view(request):
+    '''
+    Handle the search functionality for books.
+    '''
+    search_term = request.GET.get("q", "").strip()
+
+    books = search_books(search_term)
+
+    context = {
+        "books": books,
+        "search_term": search_term,
+    }
+
+    return render(
+        request,
+        "books_finder/index.html",
+        context
+    )
