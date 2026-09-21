@@ -3,24 +3,41 @@
 {% block content %}
     <h1>Bienvenue sur Biblits</h1>
 
-    <h2>Rechercher un livre</h2>
-    <form
-        method="GET"
-        action="{% url 'book_search' %}"
-    >
+    <section class="search-section">
 
-        <input
-            type="search"
-            name="q"
-            value="{{ search_term }}"
-            placeholder="Rechercher un livre..."
+        <h2 class="middle-title">Rechercher un livre</h2>
+
+        <form
+            class="search-form"
+            method="GET"
+            action="{% url 'book_search' %}"
         >
 
-        <button type="submit">
-            Rechercher
-        </button>
+            <input
+                class="search-form__input"
+                type="search"
+                name="q"
+                value="{{ search_term }}"
+                placeholder="Rechercher un livre..."
+            >
 
-    </form>
+            <button class="search-form__button" type="submit" aria-label="Rechercher">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="10.5" cy="10.5" r="6.5" />
+                    <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" />
+                </svg>
+            </button>
+
+        </form>
+
+    </section>
     {% if search_term %}
 
         <h2>
@@ -50,11 +67,4 @@
         {% endfor %}
 
     {% endif %}
-    
-    <h2>Explorer les thèmes</h2>
-    <ul>
-        {% for theme in themes %}
-            <li><a href="{% url 'theme_detail' theme.slug %}">{{ theme.name }}</a></li>
-        {% endfor %}
-    </ul>
 {% endblock %}
