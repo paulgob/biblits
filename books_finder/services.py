@@ -64,6 +64,7 @@ def search_books(search_term):
             rank=SearchRank(vector, query)
         )
         .filter(search=query)
+        .prefetch_related("theme", "tags")
         .order_by("-rank", "pk")
     )
 

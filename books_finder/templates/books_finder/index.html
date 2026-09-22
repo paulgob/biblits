@@ -1,60 +1,78 @@
 {% extends "books_finder/base.html" %}
+{% load static %}
 {% block title %}Search for a book{% endblock %}
 {% block content %}
-    <h1>Bienvenue sur Biblits</h1>
+    
 
-    <h2>Rechercher un livre</h2>
-    <form
-        method="GET"
-        action="{% url 'book_search' %}"
-    >
+    <section class="search-section">
 
-        <input
-            type="search"
-            name="q"
-            value="{{ search_term }}"
-            placeholder="Rechercher un livre..."
+        <h1 class="middle-title">Bienvenue sur Biblits</h1>
+
+        <form
+            class="search-form"
+            method="GET"
+            action="{% url 'book_search' %}"
         >
 
-        <button type="submit">
-            Rechercher
-        </button>
+            <input
+                type="search"
+                name="q"
+                value="{{ search_term }}"
+                placeholder="Rechercher un livre..."
+            >
 
-    </form>
-    {% if search_term %}
+            <button type="submit" aria-label="Rechercher">
+                <img src="{% static 'books_finder/images/search-icon.png' %}" alt="Rechercher">
+            </button>
 
-        <h2>
-            Résultats pour "{{ search_term }}"
-        </h2>
+        </form>
 
-        {% for book in books %}
+        {% if search_term %}
 
-            <article>
+            <div class="search-results">
 
-                <h3>
-                    {{ book.title }}
-                </h3>
+                <h2>
+                    Résultats pour "{{ search_term }}" ({{ books|length }})
+                </h2>
 
-                <p>
-                    {{ book.description }}
-                </p>
+                {% for book in books %}
 
-            </article>
+                    <article>
 
-        {% empty %}
+                        <h3>
+                            <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                        </h3>
 
-            <p>
-                Aucun livre trouvé.
-            </p>
+                        <p>
 
-        {% endfor %}
+                            {% for theme in book.theme.all %}
+                                <span>{{ theme.name }}</span>
+                            {% endfor %}
 
-    {% endif %}
-    
-    <h2>Explorer les thèmes</h2>
-    <ul>
-        {% for theme in themes %}
-            <li><a href="{% url 'theme_detail' theme.slug %}">{{ theme.name }}</a></li>
-        {% endfor %}
-    </ul>
+                            {% for tag in book.tags.all %}
+                                <span>{{ tag.name }}</span>
+                            {% endfor %}
+
+                        </p>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        Aucun livre trouvé.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+    <section class="theme-redirect-section">
+        <a href="{% url 'themes_list' %}" class="button">Explorer les thèmes</a>
+    </section>
+
+    {% comment %} TODO: Add url for the themes pages (and create the list theme templates) {% endcomment %}
 {% endblock %}

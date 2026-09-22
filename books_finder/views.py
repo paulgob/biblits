@@ -6,6 +6,13 @@ def index(request) :
     themes = Theme.objects.all()
     return render(request, "books_finder/index.html", {"themes": themes})
 
+def themes_list(request):
+    '''
+    Display a list of all themes.
+    '''
+    themes = Theme.objects.all()  # Get all themes from the database
+    return render(request, "books_finder/themes_list.html", {"themes": themes})  # Render the themes list template with the themes context
+
 def theme_detail(request, slug):
     '''
     Display the details of a specific theme and the books associated with it.

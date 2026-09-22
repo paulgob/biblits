@@ -1,0 +1,17 @@
+{% extends "books_finder/base.html" %}
+{% load static %}
+{% block title %}Thèmes{% endblock %}
+{% block content %}
+    <section class="themes-list-section">
+        <h1 class="middle-title">Liste des thèmes</h1>
+        <ul class="themes-list">
+            {% for theme in themes %}
+                <li>
+                    <a href="{% url 'theme_detail' theme.slug %}">{{ theme.name }}</a>
+                </li>
+            {% empty %}
+                <li>Aucun thème trouvé.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
