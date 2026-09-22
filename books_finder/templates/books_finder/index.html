@@ -27,36 +27,52 @@
 
         </form>
 
+        {% if search_term %}
+
+            <div class="search-results">
+
+                <h2>
+                    Résultats pour "{{ search_term }}" ({{ books|length }})
+                </h2>
+
+                {% for book in books %}
+
+                    <article>
+
+                        <h3>
+                            <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                        </h3>
+
+                        <p>
+
+                            {% for theme in book.theme.all %}
+                                <span>{{ theme.name }}</span>
+                            {% endfor %}
+
+                            {% for tag in book.tags.all %}
+                                <span>{{ tag.name }}</span>
+                            {% endfor %}
+
+                        </p>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        Aucun livre trouvé.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
     </section>
-    {% if search_term %}
-
-        <h2>
-            Résultats pour "{{ search_term }}"
-        </h2>
-
-        {% for book in books %}
-
-            <article>
-
-                <h3>
-                    {{ book.title }}
-                </h3>
-
-                <p>
-                    {{ book.description }}
-                </p>
-
-            </article>
-
-        {% empty %}
-
-            <p>
-                Aucun livre trouvé.
-            </p>
-
-        {% endfor %}
-
-    {% endif %}
+    <section class="theme-redirect-section">
+        <a href="{% url 'themes_list' %}" class="button">Explorer les thèmes</a>
+    </section>
 
     {% comment %} TODO: Add url for the themes pages (and create the list theme templates) {% endcomment %}
 {% endblock %}
