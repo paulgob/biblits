@@ -47,7 +47,7 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.search-form__input {
+.search-form input {
     flex: 1;
     min-width: 0;
     padding: 0 18px;
@@ -60,31 +60,26 @@ body {
     appearance: none;
 }
 
-.search-form__input::placeholder {
+.search-form input::placeholder {
     color: #8d8d8d;
 }
 
-.search-form__input::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-}
-
-.search-form__button {
+.search-form button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 58px;
     border: none;
     cursor: pointer;
-    color: #fff;
     background-color: #e08a33;
     transition: background-color 0.15s ease;
 }
 
-.search-form__button:hover {
+.search-form button:hover {
     background-color: #c9761f;
 }
 
-.search-form__button svg {
+.search-form button img {
     width: 20px;
     height: 20px;
     background-color: transparent;

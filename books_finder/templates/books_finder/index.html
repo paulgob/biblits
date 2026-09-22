@@ -1,11 +1,12 @@
 {% extends "books_finder/base.html" %}
+{% load static %}
 {% block title %}Search for a book{% endblock %}
 {% block content %}
-    <h1>Bienvenue sur Biblits</h1>
+    
 
     <section class="search-section">
 
-        <h2 class="middle-title">Rechercher un livre</h2>
+        <h1 class="middle-title">Bienvenue sur Biblits</h1>
 
         <form
             class="search-form"
@@ -14,25 +15,14 @@
         >
 
             <input
-                class="search-form__input"
                 type="search"
                 name="q"
                 value="{{ search_term }}"
                 placeholder="Rechercher un livre..."
             >
 
-            <button class="search-form__button" type="submit" aria-label="Rechercher">
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    aria-hidden="true"
-                >
-                    <circle cx="10.5" cy="10.5" r="6.5" />
-                    <line x1="15.5" y1="15.5" x2="20.5" y2="20.5" />
-                </svg>
+            <button type="submit" aria-label="Rechercher">
+                <img src="{% static 'books_finder/images/search-icon.png' %}" alt="Rechercher">
             </button>
 
         </form>
@@ -67,4 +57,6 @@
         {% endfor %}
 
     {% endif %}
+
+    {% comment %} TODO: Add url for the themes pages (and create the list theme templates) {% endcomment %}
 {% endblock %}
