@@ -3,9 +3,17 @@
 {% block content %}
     <h1>{{ theme.name }}</h1>
     <h2>Voici les livres liés au thème</h2>
-    <ul>
+    <ul class="book-list">
         {% for book in books %}
-            <li><a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a></li>
+            <li class="book-container">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.author }}</p>
+                <div class="book-tags">
+                    {% for tag in book.tags.all %}
+                        <span>{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'book_detail' pk=book.pk %}">Voir</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

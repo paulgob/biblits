@@ -5,6 +5,14 @@
     font-style: normal;
 }
 
+:root {
+    --text-color: #222;
+    --orange-color: #e08a33;
+    --orange-light-color: #fde8d7;
+    --orange-dark-color: #b0601a;
+    --background-color: #8d8d8d;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -59,14 +67,14 @@ body {
     border: none;
     outline: none;
     font-size: 0.95rem;
-    color: #222;
+    color: var(--text-color);
     background-color: #fff;
     -webkit-appearance: none;
     appearance: none;
 }
 
 .search-form input::placeholder {
-    color: #8d8d8d;
+    color: var(--background-color);
 }
 
 .search-form button {
@@ -76,7 +84,7 @@ body {
     width: 58px;
     border: none;
     cursor: pointer;
-    background-color: #e08a33;
+    background-color: var(--orange-color);
     transition: background-color 0.15s ease;
 }
 
@@ -104,7 +112,7 @@ body {
 .search-results > p {
     padding: 6px 16px;
     font-size: 0.85rem;
-    color: #8d8d8d;
+    color: var(--background-color);
 }
 
 .search-results article {
@@ -123,11 +131,11 @@ body {
 }
 
 .search-results h3 a {
-    color: #222;
+    color: var(--text-color);
     text-decoration: none;
 }
 
-.searchko-results article p {
+.search-results article p {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -135,7 +143,7 @@ body {
 
 .search-results span {
     font-size: 0.8rem;
-    color: #8d8d8d;
+    color: var(--background-color);
 }
 
 .theme-redirect-section {
@@ -145,7 +153,7 @@ body {
 }
 
 .theme-redirect-section a {
-    color: #222;
+    color: var(--text-color);
     opacity: 0.6;
     text-decoration: none;
 }
@@ -161,4 +169,78 @@ footer {
     text-align: center;
     font-size: 0.8rem;
     opacity: 0.6;
+}
+
+/* BOOK LIST  (from theme_detail page) */
+
+.book-list {
+    width: 100%;
+    max-width: 720px;
+    margin: 20px auto;
+    list-style: none;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+h1 + h2 {
+    margin: 0 20px;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--background-color);
+}
+
+/* Infos on the left, "Lire" button centered on the right */
+.book-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 6px 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.book-container:last-child {
+    border-bottom: none;
+}
+
+.book-container h3 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.book-container p {
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.book-tags span {
+    font-size: 0.75rem;
+    color: var(--orange-dark-color);
+    background-color: var(--orange-light-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.book-container a {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--text-color);
+}
+
+.book-container a:hover {
+    opacity: 0.85;
 }
