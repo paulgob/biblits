@@ -43,7 +43,9 @@
                             <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
                         </h3>
 
-                        <p>
+                        <p>{{ book.author }}</p>
+
+                        <p class="book-tags">
 
                             {% for theme in book.theme.all %}
                                 <span>{{ theme.name }}</span>

@@ -116,9 +116,8 @@ body {
 }
 
 .search-results article {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
+    display: grid;
+    gap: 4px;
     padding: 8px 16px;
 }
 
@@ -135,15 +134,12 @@ body {
     text-decoration: none;
 }
 
-.search-results article p {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.search-results span {
-    font-size: 0.8rem;
-    color: var(--background-color);
+/* Author */
+.search-results h3 + p {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.8;
 }
 
 .theme-redirect-section {
