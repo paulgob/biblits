@@ -8,9 +8,13 @@
 :root {
     --text-color: #222;
     --orange-color: #e08a33;
-    --orange-light-color: #fde8d7;
-    --orange-dark-color: #b0601a;
     --background-color: #8d8d8d;
+    --tag-text-color: #3a1c1c;
+    --tag-yellow: #fbc02d;
+    --tag-orange: #ff8a3d;
+    --tag-pink: #ffabab;
+    --tag-blue: #4a8cf0;
+    --tag-cyan: #3fc6f2;
 }
 
 * {
@@ -20,8 +24,9 @@
 }
 
 h1 {
-    font-size: 2rem;
-    margin: 20px;
+    font-size: 2.5rem;
+    margin: 40px 0;
+    text-align: center;
 }
 
 body {
@@ -29,6 +34,63 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #dedede;
+}
+
+/* Make room for the side menu only on pages that have it */
+body:has(aside) {
+    padding-left: 220px;
+}
+
+/* SIDE MENU */
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-right: 1px solid #eee;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+aside a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Features still in development: greyed out with a "Bientôt" badge */
+.in-progress a {
+    color: var(--background-color);
+}
+
+.in-progress a::after {
+    content: "Bientôt";
+    margin-left: 8px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    background-color: #eee;
+}
+
+/* Separate the account links from the browsing links */
+aside li:nth-child(3) {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
 }
 
 .search-section {
@@ -116,9 +178,8 @@ body {
 }
 
 .search-results article {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
+    display: grid;
+    gap: 4px;
     padding: 8px 16px;
 }
 
@@ -135,15 +196,12 @@ body {
     text-decoration: none;
 }
 
-.search-results article p {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.search-results span {
-    font-size: 0.8rem;
-    color: var(--background-color);
+/* Author */
+.search-results h3 + p {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.8;
 }
 
 .theme-redirect-section {
@@ -171,9 +229,11 @@ footer {
     opacity: 0.6;
 }
 
-/* BOOK LIST  (from theme_detail page) */
+/* BOOK LIST (theme_detail), THEMES LIST (themes_list) and BOOK DETAILS (book_detail) */
 
-.book-list {
+.book-list,
+.themes-list,
+.book-details {
     width: 100%;
     max-width: 720px;
     margin: 20px auto;
@@ -183,11 +243,12 @@ footer {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-h1 + h2 {
+h2 {
     margin: 0 20px;
     font-size: 1rem;
     font-weight: normal;
     color: var(--background-color);
+    text-align: center;
 }
 
 /* Infos on the left, "Lire" button centered on the right */
@@ -204,6 +265,28 @@ h1 + h2 {
     border-bottom: none;
 }
 
+.themes-list li,
+.book-details li {
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.themes-list li:last-child,
+.book-details li:last-child {
+    border-bottom: none;
+}
+
+.themes-list a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.themes-list a:hover {
+    color: var(--orange-color);
+}
+
 .book-container h3 {
     font-size: 1.2rem;
     color: var(--text-color);
@@ -218,16 +301,33 @@ h1 + h2 {
 .book-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     margin-top: 4px;
 }
 
+/* Colorful, slightly tilted badges with a glow of their own color */
 .book-tags span {
-    font-size: 0.75rem;
-    color: var(--orange-dark-color);
-    background-color: var(--orange-light-color);
+    --tag-color: var(--tag-yellow);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--tag-text-color);
+    background-color: var(--tag-color);
     padding: 4px 10px;
-    border-radius: 12px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px color-mix(in srgb, var(--tag-color) 60%, transparent);
+}
+
+.book-tags span:nth-child(5n + 2) {
+    --tag-color: var(--tag-orange);
+}
+.book-tags span:nth-child(5n + 3) {
+    --tag-color: var(--tag-pink);
+}
+.book-tags span:nth-child(5n + 4) {
+    --tag-color: var(--tag-blue);
+}
+.book-tags span:nth-child(5n + 5) {
+    --tag-color: var(--tag-cyan);
 }
 
 .book-container a {

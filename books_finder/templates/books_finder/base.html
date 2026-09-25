@@ -8,6 +8,19 @@
         <link rel="stylesheet" href="{% static 'books_finder/style.css' %}">
     </head>
     <body>
+        {% block menu %}
+        <aside>
+            <nav>
+                <ul>
+                    <li class="in-progress"><a href="{% url 'login' %}">Se connecter</a></li>
+                    <li class="in-progress"><a href="{% url 'register' %}">S'inscrire</a></li>
+                    <li class="in-progress"><a href="{% url 'favorites' %}">Voir mes favoris</a></li>
+                    <li><a href="{% url 'book_search' %}">Rechercher un livre</a></li>
+                    <li><a href="{% url 'themes_list' %}">Voir les thèmes</a></li>
+                </ul>
+            </nav>
+        </aside>
+        {% endblock %}
         {% block content %}{% endblock %}
         <footer>Paul Gobbé - 2026</footer>
     </body>

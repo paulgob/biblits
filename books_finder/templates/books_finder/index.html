@@ -1,6 +1,7 @@
 {% extends "books_finder/base.html" %}
 {% load static %}
 {% block title %}Search for a book{% endblock %}
+{% block menu %}{% endblock %}
 {% block content %}
     
 
@@ -43,7 +44,9 @@
                             <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
                         </h3>
 
-                        <p>
+                        <p>{{ book.author }}</p>
+
+                        <p class="book-tags">
 
                             {% for theme in book.theme.all %}
                                 <span>{{ theme.name }}</span>
