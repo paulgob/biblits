@@ -46,3 +46,23 @@ def book_search_view(request):
         "books_finder/index.html",
         context
     )
+
+# TODO : Implement this view
+
+def login(request):
+    '''
+    Handle user login functionality.
+    '''
+    return render(request, "books_finder/in-progress.html")  # Render the login template
+
+def register(request):
+    '''
+    Handle user registration functionality.
+    '''
+    return render(request, "books_finder/in-progress.html")  # Render the register template
+
+def favorites(request):
+    '''
+    Display the user's favorite books.
+    '''
+    return render(request, "books_finder/in-progress.html")  # Render the favorites template
