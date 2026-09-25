@@ -3,10 +3,24 @@
 {% block content %}
     <h1>{{ book.title }}</h1>
     <h2>Voici les informations concernant le livre</h2>
-    <ul>
-        <li>Titre: {{ book.title }}</li>
-        <li>Auteur: {{ book.author }}</li>
-        <li>Thèmes: {{ book.theme.all|join:", " }}</li>
-        <li>Tags: {{ book.tags.all|join:", " }}</li>
+    <ul class="book-details">
+        <li><strong>Titre:</strong> {{ book.title }}</li>
+        <li><strong>Auteur:</strong> {{ book.author }}</li>
+        <li>
+            <strong>Thèmes:</strong>
+            <div class="book-tags">
+                {% for theme in book.theme.all %}
+                    <span>{{ theme.name }}</span>
+                {% endfor %}
+            </div>
+        </li>
+        <li>
+            <strong>Tags:</strong>
+            <div class="book-tags">
+                {% for tag in book.tags.all %}
+                    <span>{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+        </li>
     </ul>
 {% endblock %}
