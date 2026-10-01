@@ -3,6 +3,7 @@ from django.utils.text import slugify
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
     publication_date = models.DateField()
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     theme = models.ManyToManyField('Theme')
