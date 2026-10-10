@@ -43,7 +43,9 @@ body:has(aside) {
 
 /* SIDE MENU */
 
+/* The menu is a popover (hidden by default by the browser), so it is forced visible on desktop */
 aside {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -51,8 +53,43 @@ aside {
     height: 100vh;
     padding: 20px 12px;
     box-sizing: border-box;
+    margin: 0;
     background-color: #fff;
+    border: none;
     border-right: 1px solid #eee;
+}
+
+.menu-button {
+    display: none;
+}
+
+/* On mobile, the menu is hidden behind a burger button */
+@media (max-width: 768px) {
+    body:has(aside) {
+        padding-left: 0;
+    }
+
+    aside:not(:popover-open) {
+        display: none;
+    }
+
+    .menu-button {
+        display: flex;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        padding: 8px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-button img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 aside ul {
