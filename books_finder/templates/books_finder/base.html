@@ -9,7 +9,10 @@
     </head>
     <body>
         {% block menu %}
-        <aside>
+        <button class="menu-button" popovertarget="menu" aria-label="Ouvrir le menu">
+            <img src="{% static 'books_finder/images/menu-icon.png' %}" alt="">
+        </button>
+        <aside id="menu" popover>
             <nav>
                 <ul>
                     <li class="in-progress"><a href="{% url 'login' %}">Se connecter</a></li>
